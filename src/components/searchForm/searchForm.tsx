@@ -3,8 +3,8 @@ import {getString, Strings} from "../../consts/Strings";
 import styles from '../../styles/form.module.css'
 import {AutoCompleteInput} from "../autoCompleteInput/autoCompleteInput";
 import {TextFieldInput} from "../textFieldInput/TextFieldInput";
-import {SearchPartRequest, SearchPartResponse} from "../../models/searchPart";
-import {SearchTransportRequest, SearchTransportResponse} from "../../models/searchTransport";
+import {SearchPartRequest} from "../../models/searchPart";
+import {SearchTransportRequest} from "../../models/searchTransport";
 
 export enum InputFieldType {
     Text,
@@ -21,7 +21,7 @@ interface SearchTransportFormProps {
     options: string[],
     fields: Field [],
     results?: any,
-    onSubmit: (values: SearchTransportRequest | SearchPartRequest) => Promise<boolean>
+    onSubmit: (values: any) => Promise<boolean>
     onReset: () => void
 }
 

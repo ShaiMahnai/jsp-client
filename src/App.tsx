@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 import './App.css';
 import { SearchForm} from "./components/searchForm/searchForm";
 import {getString} from "./consts/Strings";
-import {SearchTransportResponse} from "./models/searchTransport";
-import { SearchPartResponse} from "./models/searchPart";
+import {SearchTransportRequest, SearchTransportResponse} from "./models/searchTransport";
+import {SearchPartRequest, SearchPartResponse} from "./models/searchPart";
 import {OPTIONS, SEARCH_PART_FIELDS, SEARCH_TRANSPORT_FIELDS} from "./consts/consts";
+import {searchPart, searchTransport} from "./api/httpService";
 
 function App() {
     const [searchTransportResponse, setSearchTransportResponse] = useState<SearchTransportResponse[]>();
@@ -12,7 +13,9 @@ function App() {
 
     const onResetSearchTransport = () => setSearchTransportResponse(undefined)
     const onResetSearchPart = () => setSearchPartResponse(undefined)
-    const onSubmitSearchTransport = async (values: object): Promise<boolean> => {
+    const onSubmitSearchTransport = async (values: SearchTransportRequest): Promise<boolean> => {
+        const res = await searchTransport(values);
+        //setSearchTransportResponse(res);
         setSearchTransportResponse([{
             manufacturer: 'בדיקה',
             yearOfProduction: 2222,
@@ -27,7 +30,9 @@ function App() {
             }]);
         return true;
     }
-    const onSubmitSearchPart = async (values: object): Promise<boolean> => {
+    const onSubmitSearchPart = async (values: SearchPartRequest): Promise<boolean> => {
+        const res = await searchPart(values);
+        //setSearchPartResponse(res);
         setSearchPartResponse({
             license_plate: '2222',
             vin: 'בדיקה',
