@@ -7,7 +7,7 @@ export const formStyles = {
     } as React.CSSProperties,
     input: {
         display:"block",
-        width: 300,
+        width: 400,
         direction: "rtl"
     } as React.CSSProperties,
 

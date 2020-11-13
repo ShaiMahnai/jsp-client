@@ -1,6 +1,6 @@
 import {TextField} from "@material-ui/core";
 import {formStyles} from "../../styles/form";
-import {getString} from "../../Strings";
+import {getString} from "../../consts/Strings";
 import SearchIcon from "@material-ui/icons/Search";
 import React from "react";
 

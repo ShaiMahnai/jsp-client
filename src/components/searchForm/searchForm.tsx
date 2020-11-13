@@ -1,5 +1,5 @@
 import React, {FormEvent, useState} from "react"
-import {getString, Strings} from "../../Strings";
+import {getString, Strings} from "../../consts/Strings";
 import styles from '../../styles/form.module.css'
 import {AutoCompleteInput} from "../autoCompleteInput/autoCompleteInput";
 import {TextFieldInput} from "../textFieldInput/TextFieldInput";
@@ -11,24 +11,26 @@ export enum InputFieldType {
     AutoComplete
 }
 
-interface Field {
+export interface Field {
     key: string,
     type: InputFieldType
 }
 
 interface SearchTransportFormProps {
     title: string,
-    lst: string[],
+    options: string[],
     fields: Field [],
+    results?: any,
     onSubmit: (values: SearchTransportRequest | SearchPartRequest) => Promise<boolean>
+    onReset: () => void
 }
 
 
 export const SearchForm = (props: SearchTransportFormProps) => {
-    const {lst, onSubmit, fields, title} = props;
+    const {options, onSubmit, fields, title, results, onReset} = props;
     const [resetKey, setResetKey] = useState<number>(0)
     const [autoCompleteValues, setAutoCompleteValues] = useState<{ key: string, values: string[] }[]>([])
-    const [searchResults, setSearchResults] = useState<SearchTransportResponse | SearchPartResponse>()
+
 
     const formRef: React.RefObject<HTMLFormElement> = React.createRef();
     const validateForm = (): boolean => {
@@ -41,7 +43,7 @@ export const SearchForm = (props: SearchTransportFormProps) => {
         formRef?.current?.reset();
         setResetKey(resetKey + 1);
         setAutoCompleteValues([]);
-        setSearchResults(undefined);
+        onReset();
     }
 
 
@@ -58,15 +60,8 @@ export const SearchForm = (props: SearchTransportFormProps) => {
                 } : [])));
 
         if (validateForm()) {
-            const submitSuccess: boolean = await onSubmit(values);
-            if (submitSuccess) {
-                setSearchResults({
-                    manufacturer: 'בדיקה',
-                    yearOfProduction: 2222,
-                    vin: 'בדיקה',
-                    commercialAlias: 'בדיקה'
-                });
-            }
+            await onSubmit(values);
+
         }
     }
 
@@ -82,6 +77,23 @@ export const SearchForm = (props: SearchTransportFormProps) => {
         setAutoCompleteValues(allValues);
     }
 
+    const renderResultItem = (element: any, index: number, key?: string) => {
+        const isArray = Array.isArray(element);
+        const isImage = key?.toLowerCase() === 'image';
+        const isObject = !isArray && (typeof element === 'object');
+
+        return <div className={isObject || isArray ? styles.resultArrayItem : styles.resultItem} key={index}>
+            {isObject ? Object.keys(element).map((k, i) =>
+                    renderResultItem(element[k], i, k)) :
+                isImage ? element ? <img src={element} alt="רכיב"/> : '' :
+                    key && <span className={styles.keyName}>{getString(key)}</span>}
+            {!isObject && !isImage && <span className={styles.value}>{
+                isArray ? element.map((item: any, i: number) => renderResultItem(item, i)) :
+                    <span>{element}</span>
+
+            }</span>}
+        </div>;
+    }
 
     return <div>
         <h3>{title}</h3>
@@ -93,7 +105,7 @@ export const SearchForm = (props: SearchTransportFormProps) => {
                     field.type === InputFieldType.AutoComplete ?
                         <AutoCompleteInput
                             key={index}
-                            options={lst}
+                            options={options}
                             name={field.key}
                             multiple={true}
                             resetKey={resetKey}
@@ -106,16 +118,11 @@ export const SearchForm = (props: SearchTransportFormProps) => {
                 <input type="reset" onClick={resetForm} value={Strings.RESET}/>
             </div>
         </form>
-        {searchResults &&
+        {results &&
         <div className={styles.searchResults}>
             <h4>תוצאות החיפוש</h4>
-            {Object.keys(searchResults).map((k: any, index) => <div className={styles.resultItem} key={index}>
-            <span>{getString(k)}</span>
-            <span>{
-                // @ts-ignore
-                searchResults[k]
-            }</span>
-        </div>
+            {Object.keys(results).map((k: any, index) =>
+                renderResultItem(results[k], index, k)
             )}
         </div>
 

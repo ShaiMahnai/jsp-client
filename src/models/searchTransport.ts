@@ -8,3 +8,4 @@ export interface SearchTransportResponse {
     vin: string;
     commercialAlias: string;
 }
+

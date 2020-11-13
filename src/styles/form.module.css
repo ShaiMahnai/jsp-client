@@ -13,11 +13,38 @@
     justify-content: space-around;
 }
 
-.searchResults{
+.searchResults {
 
 }
-.resultItem{
+
+.keyName {
+    width: auto;
+    text-align: right;
+}
+
+.value {
+    width: auto;
+    padding: 0 30px 0 0;
+    text-align: left;
+    max-width: 320px;
+}
+
+.resultItem {
     display: flex;
     justify-content: space-between;
     width: 100%;
+}
+.resultItem img{
+    width: 100%;
+    max-width: 400px;
+}
+
+.resultArrayItem {
+    width: 100%;
+    display: block;
+    padding-top: 5px;
+}
+.resultArrayItem:not(:last-child) {
+    padding-bottom: 5px;
+    border-bottom: 2px black dashed;
 }
