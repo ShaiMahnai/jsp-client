@@ -1,0 +1,23 @@
+.form {
+
+}
+
+.elementsContainer {
+    margin-bottom: 10px;
+}
+
+
+.submitContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.searchResults{
+
+}
+.resultItem{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
