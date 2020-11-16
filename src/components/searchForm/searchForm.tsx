@@ -8,7 +8,8 @@ import {SearchTransportRequest} from "../../models/searchTransport";
 
 export enum InputFieldType {
     Text,
-    AutoComplete
+    AutoComplete,
+    AutoCompleteSingle
 }
 
 export interface Field {
@@ -108,6 +109,14 @@ export const SearchForm = (props: SearchTransportFormProps) => {
                             options={options}
                             name={field.key}
                             multiple={true}
+                            resetKey={resetKey}
+                            onChangeValues={onAutoCompleteChangeValues.bind(this, field.key)}/> :
+                    field.type === InputFieldType.AutoCompleteSingle ?
+                        <AutoCompleteInput
+                            key={index}
+                            options={options}
+                            name={field.key}
+                            multiple={false}
                             resetKey={resetKey}
                             onChangeValues={onAutoCompleteChangeValues.bind(this, field.key)}/> :
                         <TextFieldInput key={index} name={field.key}/>

@@ -6,7 +6,7 @@ export const SEARCH_PART_FIELDS :Field[]= [
     {key: 'license_plate', type: InputFieldType.Text},
 ]
 export const SEARCH_TRANSPORT_FIELDS :Field[]= [
-    {key: 'thbrInput', type: InputFieldType.AutoComplete},
+    {key: 'thbrInput', type: InputFieldType.AutoCompleteSingle},
 ]
 export const OPTIONS: string[] = [
     "בטנה קדמית",
