@@ -15,42 +15,14 @@ function App() {
     const onResetSearchPart = () => setSearchPartResponse(undefined)
     const onSubmitSearchTransport = async (values: SearchTransportRequest): Promise<boolean> => {
         const res = await searchTransport(values);
-        //setSearchTransportResponse(res);
-        setSearchTransportResponse([{
-            manufacturer: 'בדיקה',
-            yearOfProduction: 2222,
-            vin: 'בדיקה',
-            commercialAlias: 'בדיקה'
-        },
-            {
-                manufacturer: 'בדיקה 2',
-                yearOfProduction: 2222,
-                vin: 'בדיקה 2',
-                commercialAlias: 'בדיקה 2'
-            }]);
+        setSearchTransportResponse(res);
+
         return true;
     }
     const onSubmitSearchPart = async (values: SearchPartRequest): Promise<boolean> => {
         const res = await searchPart(values);
-        //setSearchPartResponse(res);
-        setSearchPartResponse({
-            license_plate: '2222',
-            vin: 'בדיקה',
+        setSearchPartResponse(res);
 
-            parts: [
-                {
-                    name: 'בדיקה 1',
-                    serial_number: '1232',
-                    image: 'https://www.communityguides.net/wp-content/uploads/2019/03/Questions-To-Ask-Before-Buying-From-Your-Auto-Body-Parts-Supplier-1-218x150.jpg'
-                },
-                {
-                    name: 'בדיקה 2',
-                    serial_number: '1232321321',
-                    image: 'https://c7.alamy.com/comp/F99X7W/the-most-popular-spare-parts-for-car-F99X7W.jpg'
-                }
-            ],
-
-        });
         return true;
     }
 
