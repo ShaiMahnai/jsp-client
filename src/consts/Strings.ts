@@ -1,5 +1,6 @@
 export const Strings = {
     thbrInput: 'שם הפריט/ קיט',
+    part_name: 'שם הפריט/ קיט',
     vin: 'מספר שלדה',
     license_plate: 'מספר רישוי',
     manufacturer: 'יצרן',
