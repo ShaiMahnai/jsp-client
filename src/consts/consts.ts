@@ -1,7 +1,7 @@
 import {Field, InputFieldType} from "../components/searchForm/searchForm";
 
 export const SEARCH_PART_FIELDS :Field[]= [
-    {key: 'thbrInput', type: InputFieldType.AutoComplete},
+    {key: 'part_name', type: InputFieldType.AutoComplete},
     {key: 'vin', type: InputFieldType.Text},
     {key: 'license_plate', type: InputFieldType.Text},
 ]
