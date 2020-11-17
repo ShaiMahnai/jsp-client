@@ -1,9 +1,8 @@
 import axios from 'axios';
 import {SearchTransportRequest, SearchTransportResponse} from "../models/searchTransport";
 import {SearchPartRequest, SearchPartResponse} from "../models/searchPart";
-import {API_ADDRESS} from "../consts/consts";
 
-
+const API_ADDRESS = 'http://127.0.0.1:5000';
 
 
 export const searchTransport = async (searchTransportRequest: SearchTransportRequest): Promise<SearchTransportResponse[]> => {

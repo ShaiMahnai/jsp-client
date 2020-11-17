@@ -6,17 +6,8 @@ import {TextFieldInput} from "../textFieldInput/TextFieldInput";
 import {SearchPartRequest} from "../../models/searchPart";
 import {SearchTransportRequest} from "../../models/searchTransport";
 import {API_ADDRESS} from "../../consts/consts";
+import {Field, InputFieldType} from "../../models/appModels";
 
-export enum InputFieldType {
-    Text,
-    AutoComplete,
-    AutoCompleteSingle
-}
-
-export interface Field {
-    key: string,
-    type: InputFieldType
-}
 
 interface SearchTransportFormProps {
     title: string,

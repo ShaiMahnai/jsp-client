@@ -1,6 +1,8 @@
-import {Field, InputFieldType} from "../components/searchForm/searchForm";
+import {Field, InputFieldType} from "../models/appModels";
 
-export const API_ADDRESS = 'http://127.0.0.1:5000';
+export const API_ADDRESS = 'http://127.0.0.1:5000'
+
+
 export const SEARCH_PART_FIELDS :Field[]= [
     {key: 'part_name', type: InputFieldType.AutoComplete},
     {key: 'vin', type: InputFieldType.Text},
@@ -9,6 +11,7 @@ export const SEARCH_PART_FIELDS :Field[]= [
 export const SEARCH_TRANSPORT_FIELDS :Field[]= [
     {key: 'thbrInput', type: InputFieldType.AutoCompleteSingle},
 ]
+
 export const OPTIONS: string[] = [
     "בטנה קדמית",
     "מכסה מיכל עיבוי",
