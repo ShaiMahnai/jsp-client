@@ -1,5 +1,6 @@
 import {Field, InputFieldType} from "../components/searchForm/searchForm";
 
+export const API_ADDRESS = 'http://127.0.0.1:5000';
 export const SEARCH_PART_FIELDS :Field[]= [
     {key: 'part_name', type: InputFieldType.AutoComplete},
     {key: 'vin', type: InputFieldType.Text},

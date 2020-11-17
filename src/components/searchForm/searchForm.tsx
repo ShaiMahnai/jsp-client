@@ -5,6 +5,7 @@ import {AutoCompleteInput} from "../autoCompleteInput/autoCompleteInput";
 import {TextFieldInput} from "../textFieldInput/TextFieldInput";
 import {SearchPartRequest} from "../../models/searchPart";
 import {SearchTransportRequest} from "../../models/searchTransport";
+import {API_ADDRESS} from "../../consts/consts";
 
 export enum InputFieldType {
     Text,
@@ -52,7 +53,7 @@ export const SearchForm = (props: SearchTransportFormProps) => {
         event.preventDefault();
         const elements: SearchTransportRequest = (event.target as SearchTransportRequest); // OK
 
-        const values: SearchTransportRequest = Object.assign({},
+        const values = Object.assign({},
             ...Object.keys(elements).flatMap((key) => (
                 elements[key].id ? {
                     [elements[key].id]:
@@ -86,7 +87,7 @@ export const SearchForm = (props: SearchTransportFormProps) => {
         return <div className={isObject || isArray ? styles.resultArrayItem : styles.resultItem} key={index}>
             {isObject ? Object.keys(element).map((k, i) =>
                     renderResultItem(element[k], i, k)) :
-                isImage ? element ? <img src={element} alt="רכיב"/> : '' :
+                isImage ? element ? <img src={`${API_ADDRESS}/${element}`} alt="רכיב"/> : '' :
                     key && <span className={styles.keyName}>{getString(key)}</span>}
             {!isObject && !isImage && <span className={styles.value}>{
                 isArray ? element.map((item: any, i: number) => renderResultItem(item, i)) :
