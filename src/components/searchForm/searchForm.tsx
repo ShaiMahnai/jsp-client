@@ -78,7 +78,7 @@ export const SearchForm = (props: SearchTransportFormProps) => {
         return <div className={isObject || isArray ? styles.resultArrayItem : styles.resultItem} key={index}>
             {isObject ? Object.keys(element).map((k, i) =>
                     renderResultItem(element[k], i, k)) :
-                isImage ? element ? <img src={`${API_ADDRESS}/${element}`} alt="רכיב"/> : '' :
+                isImage ? element ? <a href={`${API_ADDRESS}/${element}`} target='_blank'> <img src={`${API_ADDRESS}/${element}`} alt="רכיב"/></a> : '' :
                     key && <span className={styles.keyName}>{getString(key)}</span>}
             {!isObject && !isImage && <span className={styles.value}>{
                 isArray ? element.map((item: any, i: number) => renderResultItem(item, i)) :
